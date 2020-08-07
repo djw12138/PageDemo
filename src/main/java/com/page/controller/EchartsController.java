@@ -30,4 +30,13 @@ public class EchartsController {
     public String demo2() {
         return PREFIX+"/demo2";
     }
+
+    /**
+     * 测试三
+     * @return
+     */
+    @RequestMapping(value = "/demo3" , method = RequestMethod.GET)
+    public String demo3() {
+        return PREFIX+"/demo3";
+    }
 }
