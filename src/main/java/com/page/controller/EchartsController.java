@@ -1,5 +1,7 @@
 package com.page.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,5 +58,31 @@ public class EchartsController {
     @RequestMapping(value = "/demo5" , method = RequestMethod.GET)
     public String demo5() {
         return PREFIX+"/demo5";
+    }
+
+    /**
+     * 后端查询(Jquery)
+     * @return
+     */
+    @RequestMapping(value = "/queryDemo" , method = RequestMethod.GET)
+    public String queryDemo() {
+        return PREFIX+"/queryDemo";
+    }
+
+    /**
+     * 后端查询(Jquery)的数据
+     * @return
+     */
+    @RequestMapping(value = "/queryDemoData" , method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject queryDemoData() {
+        JSONObject resultJson = new JSONObject();
+        JSONArray dataArray = new JSONArray();
+
+        String data="[{value: 335, name: '直接访问'},{value: 310, name: '邮件营销'}, {value: 274, name: '联盟广告'},{value: 235, name: '视频广告'},{value: 400, name: '搜索引擎'}]";
+        dataArray=JSONArray.parseArray(data);
+
+        resultJson.put("data",dataArray);
+        return resultJson;
     }
 }
