@@ -61,6 +61,15 @@ public class EchartsController {
     }
 
     /**
+     * 测试六(横向柱形图)
+     * @return
+     */
+    @RequestMapping(value = "/demo6" , method = RequestMethod.GET)
+    public String demo6() {
+        return PREFIX+"/demo6";
+    }
+
+    /**
      * 后端查询(Jquery)
      * @return
      */
