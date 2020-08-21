@@ -70,6 +70,15 @@ public class EchartsController {
     }
 
     /**
+     * 测试七(折线图)
+     * @return
+     */
+    @RequestMapping(value = "/demo7" , method = RequestMethod.GET)
+    public String demo7() {
+        return PREFIX+"/demo7";
+    }
+
+    /**
      * 后端查询(Jquery)
      * @return
      */
