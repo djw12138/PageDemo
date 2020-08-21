@@ -1,0 +1,804 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>可视化界面</title>
+
+    <script type="text/javascript" src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+    <script type="text/javascript" src="/js/echarts/js/echarts.min.js"></script>
+    <style>
+    * {
+        margin:0;
+        padding:0;
+    }
+
+    html{
+        width:100%;
+        height:100%;
+    }
+
+    body{
+        background: url("/images/zydw/report_background.png") no-repeat center;
+        background-size : 100% 100%;
+        width:100%;
+        height:100%;
+    }
+
+    .div_head{
+        width:100%;
+        height:10%;
+    }
+
+    .div_left{
+        width:35%;
+        height:90%;
+        float:left;
+    }
+
+    .div_middle{
+        width:30%;
+        height:90%;
+        float:left;
+    }
+
+    .div_right{
+        width:35%;
+        height:90%;
+        float:left;
+    }
+
+    #one {
+        background: url("/images/zydw/report_background_min.png") no-repeat center;
+        background-size : 100% 100%;
+        width:90%;
+        height:30%;
+        margin-left:5%;
+        float:left;
+    }
+
+    #two_title {
+        float:left;
+    }
+
+    #two {
+        background: url("/images/zydw/report_background_min.png") no-repeat center;
+        background-size : 100% 100%;
+        width:90%;
+        height:30%;
+        margin-right:5%;
+        overflow: hidden;
+        float:right;
+    }
+
+    #three {
+        background: url("/images/zydw/report_background_min.png") no-repeat center;
+        background-size : 100% 100%;
+        width:90%;
+        height:30%;
+        margin-top:5%;
+        margin-left:5%;
+        float:left;
+    }
+
+    #four_title {
+        float:left;
+    }
+
+    #four {
+        background: url("/images/zydw/report_background_min.png") no-repeat center;
+        background-size : 100% 100%;
+        width:90%;
+        height:30%;
+        margin-top:5%;
+        margin-right:5%;
+        overflow: hidden;
+        float:right;
+    }
+
+    #five {
+        background: url("/images/zydw/report_background_min.png") no-repeat center;
+        background-size : 100% 100%;
+        width:90%;
+        height:30%;
+        margin-top:5%;
+        margin-left:5%;
+        float:left;
+    }
+
+    #six_title {
+        float:left;
+    }
+
+    #six {
+        background: url("/images/zydw/report_background_min.png") no-repeat center;
+        background-size : 100% 100%;
+        width:90%;
+        height:30%;
+        margin-top:5%;
+        margin-right:5%;
+        overflow: hidden;
+        float:right;
+    }
+
+    ul {
+        list-style: none;
+        width:100%;
+        margin:0;
+    }
+
+    ul li
+    {
+        height:40px;
+        width:100%;
+        text-align:center;
+    }
+
+    ul li span
+    {
+        width:100%;
+        line-height:40px;
+        color:#ffffff;
+        float:left;
+        font-size : 12px;
+    }
+
+    .one_li{
+        background:#224163;
+    }
+
+    .two_li{
+
+    }
+
+    .right_title{
+        color : #00FFFF;
+        font-weight : bold;
+        text-align: left;
+        font-size : 20px;
+    }
+
+    .right_value{
+        width:96%;
+        height:81%;
+        overflow: hidden;
+        float:left;
+        margin:2% 2% 2% 2%;
+    }
+
+    .div_middle_min{
+        width:35%;
+        height:10%;
+        background: url("/images/zydw/report_middle_min.png") no-repeat center;
+        background-size : 100% 100%;
+    }
+
+    #seven {
+        margin-top:90%;
+        margin-left:10%;
+        float:left;
+    }
+
+    #eight {
+        margin-top:90%;
+        margin-right:10%;
+        float:right;
+    }
+
+    #nine {
+        margin-top:5%;
+        margin-left:10%;
+        float:left;
+    }
+
+    #ten {
+        margin-top:5%;
+        margin-right:10%;
+        float:right;
+    }
+
+    .div_middle_value{
+        width:70%;
+        height:40%;
+        margin-right:4%;
+        color : #20FDFA;
+        font-weight : bold;
+        text-align: center;
+        display:table;
+        font-size : 16px;
+        float: right;
+    }
+
+    .div_middle_name{
+        width:80%;
+        height:40%;
+        margin-top:7%;
+        color : #FFEFD5;
+        font-weight : bold;
+        text-align: center;
+        display:table;
+        font-size : 16px;
+        float: right;
+    }
+
+    .div_middle_cell {
+       display:table-cell;
+       vertical-align:middle;
+    }
+    </style>
+</head>
+<body style="overflow:-Scroll;overflow-x:hidden;overflow-y:hidden">
+
+<div class="div_head">
+    <div><img src="/images/zydw/report_logo.png" /></div>
+</div>
+<div class="div_left">
+    <div id="one">
+        <div id="one_chart" style="width:100%;height:100%;"></div>
+    </div>
+    <div id="three">
+        <div id="three_chart" style="width:100%;height:100%;"></div>
+    </div>
+    <div id="five">
+        <div id="five_chart" style="width:100%;height:100%;"></div>
+    </div>
+</div>
+
+<div class="div_middle">
+    <div id="seven" class="div_middle_min">
+        <div class="div_middle_value"><div id="seven_value" class="div_middle_cell"></div></div>
+        <div class="div_middle_name"><div class="div_middle_cell">当日在场总人数</div></div>
+    </div>
+    <div id="eight" class="div_middle_min">
+        <div class="div_middle_value"><div id="eight_value" class="div_middle_cell"></div></div>
+        <div class="div_middle_name"><div class="div_middle_cell">当日在岗总人数</div></div>
+    </div>
+    <div id="nine" class="div_middle_min">
+        <div class="div_middle_value"><div id="nine_value" class="div_middle_cell"></div></div>
+        <div class="div_middle_name"><div class="div_middle_cell">当日报警数</div></div>
+    </div>
+    <div id="ten" class="div_middle_min">
+        <div class="div_middle_value"><div id="ten_value" class="div_middle_cell"></div></div>
+        <div class="div_middle_name"><div class="div_middle_cell">人员围栏数</div></div>
+    </div>
+</div>
+
+<div class="div_right">
+    <div id="two">
+        <div id="two_title" class="right_title">在场超时报警</div>
+        <div id="two_value" class="right_value">
+            <ul id="two_ul1"></ul>
+            <ul id="two_ul2"></ul>
+        </div>
+    </div>
+
+    <div id="four">
+        <div id="four_title" class="right_title">低电量报警信息</div>
+        <div id="four_value" class="right_value">
+            <ul id="four_ul1"></ul>
+            <ul id="four_ul2"></ul>
+        </div>
+    </div>
+
+    <div id="six">
+        <div id="six_title" class="right_title">出入围栏实时记录</div>
+        <div id="six_value" class="right_value">
+            <ul id="six_ul1"></ul>
+            <ul id="six_ul2"></ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var oneChart = echarts.init(document.getElementById('one_chart'));
+    var threeChart = echarts.init(document.getElementById('three_chart'));
+    var fiveChart = echarts.init(document.getElementById('five_chart'));
+
+    var oneUrl = "/zydwReportController/queryOne";
+    var twoUrl = "/zydwReportController/queryTwo";
+    var threeUrl = "/zydwReportController/queryThree";
+    var fourUrl = "/zydwReportController/queryFour";
+    var fiveUrl = "/zydwReportController/queryFive";
+    var sixUrl = "/zydwReportController/querySix";
+    var middleUrl = "/zydwReportController/queryMiddle";
+
+    var twoRollInterval;//图表二滚动定时器
+    var fourRollInterval;//图表四滚动定时器
+    var sixRollInterval;//图表六滚动定时器
+
+
+    //查询第一个图表数据
+    function queryOneData(myChart,url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 if(0==result.isDisplay){
+                     $("#one_chart").show();
+                     myChart.setOption({
+                        title: {
+                            text: '昨日工种工时排名',
+                            textStyle: {
+                               color : '#00FFFF',
+                               fontSize : 20 //文字的字体大小
+                            }
+                        },
+                        color : ['#0981E3','#2f4554', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'value',
+                            boundaryGap: [0, 0.01],
+                            splitLine:{
+                                show: false //去除网格线
+                            },
+                            axisLabel: {
+                                fontSize: 12,
+                                color: "#FFEFD5" //刻度线标签颜色
+                            },
+                            axisLine: {
+                                lineStyle:{
+                                     color: "#FFEFD5", //刻度线标签颜色
+                                     width: 1
+                                }
+                            }
+                        },
+                        yAxis: {
+                            type: 'category',
+                            data: result.key,
+                            splitLine:{
+                                show: false //去除网格线
+                            },
+                            axisLabel: {
+                                fontSize: 12,
+                                color: "#FFEFD5" //刻度线标签颜色
+                            },
+                            axisLine: {
+                                lineStyle:{
+                                     color: "#FFEFD5", //刻度线标签颜色
+                                     width: 1
+                                }
+                            }
+                        },
+                        series: [
+                            {
+                                type: 'bar',
+                                data: result.value
+                            }
+                        ]
+                    });
+                    $(window).resize(myChart.resize);
+                 }else {
+                     $("#one_chart").hide();
+                 }
+             }
+         });
+    }
+
+    //查询第二个图表数据
+    function queryTwoData(url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 clearInterval(twoRollInterval);//清除滚动定时
+                 var ul1 = document.getElementById("two_ul1");
+                 var ul2 = document.getElementById("two_ul2");
+                 var ulBox = document.getElementById("two_value");
+                 $("#two_ul1").find("li").remove();
+                 $("#two_ul2").find("li").remove();
+
+                 if(0==result.isDisplay){
+                     $.each(result.data,function (i,item) {
+                         if(i % 2 !==0) {
+                            $("#two_ul1").append("<li class =\"one_li\"><div style=\"float:left;vertical-align: middle;display: table;width:10%;height:100%\"><div class=\"div_middle_cell\"><img src=\"/images/zydw/report_warn.png\"/></div></div><span style=\"width:30%\">"
+                            +item.personName+"</span><span style=\"width:30%\">"
+                            +item.cardMac+"</span><span style=\"width:30%\">"+item.hours+" (已超8小时)</span></li>");
+                         }else{
+                            $("#two_ul1").append("<li class =\"two_li\"><div style=\"float:left;vertical-align: middle;display: table;width:10%;height:100%\"><div class=\"div_middle_cell\"><img src=\"/images/zydw/report_warn.png\"/></div></div><span style=\"width:30%\">"
+                            +item.personName+"</span><span style=\"width:30%\">"
+                            +item.cardMac+"</span><span style=\"width:30%\">"+item.hours+" (已超8小时)</span></li>");
+                         }
+                     });
+                     twoRoll(ulBox,ul1,ul2,50);
+                 }
+             }
+         });
+    }
+
+    function twoRoll(ulBox,ul1,ul2,t) {
+        var ulLength = ul1.getElementsByTagName("li").length;
+        //数量过少，无需滚动
+        if(ulLength>5){
+            ul2.innerHTML = ul1.innerHTML;
+            ulBox.scrollTop = 0; // 开始无滚动时设为0
+            twoRollInterval = setInterval(function () {
+                twoRollStart (ul1,ul2,ulBox)
+            }, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+            // 鼠标移入div时暂停滚动
+            ulBox.onmouseover = function () {
+                clearInterval(twoRollInterval);
+            };
+            // 鼠标移出div后继续滚动
+            ulBox.onmouseout = function () {
+                clearInterval(twoRollInterval);
+                twoRollInterval = setInterval(function () {
+                    twoRollStart (ul1,ul2,ulBox)
+                }, t);
+            }
+        }
+    }
+
+    //图表二开始滚动函数
+    function twoRollStart(ul1,ul2,ulBox) {
+        // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+        if (ulBox.scrollTop >= ul1.scrollHeight) {
+            ulBox.scrollTop = 0;
+        } else {
+            ulBox.scrollTop++;
+        }
+    }
+
+    //查询第三个图表数据
+    function queryThreeData(myChart,url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 if(0==result.isDisplay){
+                     $("#three_chart").show();
+                     myChart.setOption({
+                        title: {
+                            text: '人员类型占比',
+                            left: 'left',
+                            textStyle: {
+                               color : '#00FFFF',
+                               fontSize : 20 //文字的字体大小
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        legend: {
+                            left: 'center',
+                            top: 'bottom',
+                            data: result.legend,
+                            textStyle: {
+                               color : '#FFEFD5',
+                               fontSize : 12 //文字的字体大小
+                            }
+                        },
+                        series: [
+                            {
+                                name: '人员类型占比',
+                                type: 'pie',
+                                radius: [20, 70],
+                                center: ['50%', '50%'],
+                                roseType: 'radius',
+                                label:{
+                                    normal: {
+                                        show: true,
+                                        formatter: "{b} ({d}%)",
+                                        textStyle : {
+                                            fontWeight : 300 ,
+                                            fontSize : 11 //文字的字体大小
+                                        },
+                                    }
+                                },
+                                emphasis: {
+                                    label: {
+                                        show: true
+                                    }
+                                },
+                                data: result.data
+                            }
+                        ]
+                    });
+                    $(window).resize(myChart.resize);
+                 }else {
+                     $("#three_chart").hide();
+                 }
+             }
+         });
+    }
+
+    //查询第四个图表数据
+    function queryFourData(url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 clearInterval(fourRollInterval);//清除滚动定时
+                 var ul1 = document.getElementById("four_ul1");
+                 var ul2 = document.getElementById("four_ul2");
+                 var ulBox = document.getElementById("four_value");
+                 $("#four_ul1").find("li").remove();
+                 $("#four_ul2").find("li").remove();
+
+                 if(0==result.isDisplay){
+                     $.each(result.data,function (i,item) {
+                         if(i % 2 !==0) {
+                            $("#four_ul1").append("<li class =\"one_li\"><span style=\"width:40%\">"+item.time
+                            +"</span><span style=\"width:60%\">"
+                            +item.name+"</span></li>");
+                         }else{
+                            $("#four_ul1").append("<li class =\"two_li\"><span style=\"width:40%\">"+item.time
+                            +"</span><span style=\"width:60%\">"
+                            +item.name+"</span></li>");
+                         }
+                     });
+                     fourRoll(ulBox,ul1,ul2,50);
+                 }
+             }
+         });
+    }
+
+    function fourRoll(ulBox,ul1,ul2,t) {
+        var ulLength = ul1.getElementsByTagName("li").length;
+        //数量过少，无需滚动
+        if(ulLength>5){
+            ul2.innerHTML = ul1.innerHTML;
+            ulBox.scrollTop = 0; // 开始无滚动时设为0
+            fourRollInterval = setInterval(function () {
+                fourRollStart (ul1,ul2,ulBox)
+            }, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+            // 鼠标移入div时暂停滚动
+            ulBox.onmouseover = function () {
+                clearInterval(fourRollInterval);
+            };
+            // 鼠标移出div后继续滚动
+            ulBox.onmouseout = function () {
+                clearInterval(fourRollInterval);
+                fourRollInterval = setInterval(function () {
+                    fourRollStart (ul1,ul2,ulBox)
+                }, t);
+            }
+        }
+    }
+
+    //图表四开始滚动函数
+    function fourRollStart(ul1,ul2,ulBox) {
+        // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+        if (ulBox.scrollTop >= ul1.scrollHeight) {
+            ulBox.scrollTop = 0;
+        } else {
+            ulBox.scrollTop++;
+        }
+    }
+
+    //查询第五个图表数据
+    function queryFiveData(myChart,url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 if(0==result.isDisplay){
+                     $("#five_chart").show();
+                     myChart.setOption({
+                        title: {
+                            text: '在场/在岗/统计曲线(最近25天)',
+                            textStyle: {
+                               color : '#00FFFF',
+                               fontSize : 20 //文字的字体大小
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: result.legend,
+                            left: 'right',
+                            textStyle: {
+                               color : '#FFEFD5',
+                               fontSize : 12 //文字的字体大小
+                            }
+                        },
+                        color: ['#FF0000','#00BFFF'],
+                        grid: {
+                            left: '3%',
+                            right: '4%',
+                            bottom: '3%',
+                            containLabel: true
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: result.category,
+                            splitLine:{
+                                show: false //去除网格线
+                            },
+                            axisLabel: {
+                                fontSize: 12,
+                                color: "#FFEFD5" //刻度线标签颜色
+                            },
+                            axisLine: {
+                               lineStyle:{
+                                  color: "#FFEFD5", //刻度线标签颜色
+                                  width: 1
+                               }
+                            }
+                        },
+                        yAxis: {
+                            type: 'value',
+                            splitLine:{
+                                show: false //去除网格线
+                            },
+                            axisLabel: {
+                                fontSize: 12,
+                                color: "#FFEFD5" //刻度线标签颜色
+                            },
+                            axisLine: {
+                               lineStyle:{
+                                  color: "#FFEFD5", //刻度线标签颜色
+                                  width: 1
+                               }
+                            }
+                        },
+                        series: result.data
+                    });
+                    $(window).resize(myChart.resize);
+                 }else {
+                     $("#five_chart").hide();
+                 }
+             }
+         });
+    }
+
+    //查询第六个图表数据
+    function querySixData(url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 clearInterval(sixRollInterval);//清除滚动定时
+                 var ul1 = document.getElementById("six_ul1");
+                 var ul2 = document.getElementById("six_ul2");
+                 var ulBox = document.getElementById("six_value");
+                 $("#six_ul1").find("li").remove();
+                 $("#six_ul2").find("li").remove();
+
+                 if(0==result.isDisplay){
+                     $.each(result.data,function (i,item) {
+                         if(i % 2 !==0) {
+                            $("#six_ul1").append("<li class =\"one_li\"><span style=\"width:40%\">"+item.time
+                            +"</span><span style=\"width:30%\">"
+                            +item.from+"</span><span style=\"width:30%\">"
+                            +item.name+"</span></li>");
+                         }else{
+                            $("#six_ul1").append("<li class =\"two_li\"><span style=\"width:40%\">"+item.time
+                            +"</span><span style=\"width:30%\">"
+                            +item.from+"</span><span style=\"width:30%\">"
+                            +item.name+"</span></li>");
+                         }
+                     });
+                     sixRoll(ulBox,ul1,ul2,50);
+                 }
+             }
+         });
+    }
+
+    function sixRoll(ulBox,ul1,ul2,t) {
+        var ulLength = ul1.getElementsByTagName("li").length;
+        //数量过少，无需滚动
+        if(ulLength>5){
+            ul2.innerHTML = ul1.innerHTML;
+            ulBox.scrollTop = 0; // 开始无滚动时设为0
+            sixRollInterval = setInterval(function () {
+                sixRollStart (ul1,ul2,ulBox)
+            }, t); // 设置定时器，参数t用在这为间隔时间（单位毫秒），参数t越小，滚动速度越快
+            // 鼠标移入div时暂停滚动
+            ulBox.onmouseover = function () {
+                clearInterval(sixRollInterval);
+            };
+            // 鼠标移出div后继续滚动
+            ulBox.onmouseout = function () {
+                clearInterval(sixRollInterval);
+                sixRollInterval = setInterval(function () {
+                    sixRollStart (ul1,ul2,ulBox)
+                }, t);
+            }
+        }
+    }
+
+    //图表六开始滚动函数
+    function sixRollStart(ul1,ul2,ulBox) {
+        // 正常滚动不断给scrollTop的值+1,当滚动高度大于列表内容高度时恢复为0
+        if (ulBox.scrollTop >= ul1.scrollHeight) {
+            ulBox.scrollTop = 0;
+        } else {
+            ulBox.scrollTop++;
+        }
+    }
+
+    //查询中间图表数据
+    function queryMiddleData(url){
+        $.ajax({
+             type: "GET",
+             url:url,
+             dataType: "json",
+             contentType: "application/json; charset=utf-8",
+             cache: false,
+             success:function(result){
+                 if(0==result.isDisplay){
+                    $("#seven_value").html(result.seven);
+                    $("#eight_value").html(result.eight);
+                    $("#nine_value").html(result.nine);
+                    $("#ten_value").html(result.ten);
+                 }else{
+                    $("#seven_value").html("");
+                    $("#eight_value").html("");
+                    $("#nine_value").html("");
+                    $("#ten_value").html("");
+                 }
+             }
+         });
+    }
+
+    $(document).ready(function(){
+        queryOneData(oneChart,oneUrl);
+        queryTwoData(twoUrl);
+        queryThreeData(threeChart,threeUrl);
+        queryFourData(fourUrl);
+        queryFiveData(fiveChart,fiveUrl);
+        querySixData(sixUrl);
+        queryMiddleData(middleUrl);
+
+        setInterval(function(){
+            queryOneData(oneChart,oneUrl);
+        },1000*20);
+
+        setInterval(function(){
+            queryTwoData(twoUrl);
+        },1000*60);
+
+        setInterval(function(){
+            queryThreeData(threeChart,threeUrl);
+        },1000*20);
+
+        setInterval(function(){
+            queryFourData(fourUrl);
+        },1000*60);
+
+        setInterval(function(){
+            queryFiveData(fiveChart,fiveUrl);
+        },1000*20);
+
+        setInterval(function(){
+            querySixData(sixUrl);
+        },1000*60);
+
+        setInterval(function(){
+            queryMiddleData(middleUrl);
+        },1000*20);
+    });
+</script>
+</body>
+</html>
