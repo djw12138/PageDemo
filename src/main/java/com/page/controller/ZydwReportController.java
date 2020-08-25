@@ -142,7 +142,7 @@ public class ZydwReportController {
             JSONObject json = new JSONObject();
             json.put("name", legend);
             json.put("type", "line");
-            json.put("stack", "总量");
+            //json.put("stack", "总量");
             json.put("smooth",true);
 
             double[] datas = new double[categorys.length];
