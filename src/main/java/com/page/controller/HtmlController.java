@@ -19,4 +19,12 @@ public class HtmlController {
         return PREFIX+"/paging";
     }
 
+    /**
+     * 轮播图
+     * @return
+     */
+    @RequestMapping(value = "/rotationChart" , method = RequestMethod.GET)
+    public String rotationChart() {
+        return PREFIX+"/rotation_chart";
+    }
 }
