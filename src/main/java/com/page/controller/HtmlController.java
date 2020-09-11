@@ -55,6 +55,18 @@ public class HtmlController {
 
     /**
      * @Author dai jiawei
+     * @Description 颜色
+     * @Date 2020/9/10 10:59
+     * @param
+     * @Return java.lang.String
+     **/
+    @RequestMapping(value = "/color" , method = RequestMethod.GET)
+    public String color() {
+        return PREFIX+"/color";
+    }
+
+    /**
+     * @Author dai jiawei
      * @Description 查询分页数据
      * @Date 2020/9/1 8:44
      * @param page

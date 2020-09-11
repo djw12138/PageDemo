@@ -88,6 +88,15 @@ public class EchartsController {
     }
 
     /**
+     * 后端查询(Jquery)
+     * @return
+     */
+    @RequestMapping(value = "/loadingDemo" , method = RequestMethod.GET)
+    public String loadingDemo() {
+        return PREFIX+"/loadingDemo";
+    }
+
+    /**
      * 后端查询(Jquery)的数据
      * @return
      */
@@ -100,6 +109,32 @@ public class EchartsController {
         String data="[{value: 335, name: '直接访问'},{value: 310, name: '邮件营销'}, {value: 274, name: '联盟广告'},{value: 235, name: '视频广告'},{value: 400, name: '搜索引擎'}]";
         dataArray=JSONArray.parseArray(data);
 
+        resultJson.put("data",dataArray);
+        return resultJson;
+    }
+
+    /***
+     * @Author dai jiawei
+     * @Description
+     * @Date 2020/9/5 8:50
+     * @param
+     * @Return com.alibaba.fastjson.JSONObject
+     **/
+    @RequestMapping(value = "/loadingData" , method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject loadingData() {
+        JSONObject resultJson = new JSONObject();
+        JSONArray dataArray = new JSONArray();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(System.currentTimeMillis()%2==0) {
+            String data = "[{value: 335, name: '直接访问'},{value: 310, name: '邮件营销'}, {value: 274, name: '联盟广告'},{value: 235, name: '视频广告'},{value: 400, name: '搜索引擎'}]";
+            dataArray = JSONArray.parseArray(data);
+        }
         resultJson.put("data",dataArray);
         return resultJson;
     }

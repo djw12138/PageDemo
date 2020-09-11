@@ -19,4 +19,15 @@ public class LayuiController {
         return PREFIX+"/layuiAdmin";
     }
 
+    /**
+     * @Author dai jiawei
+     * @Description 模块展示
+     * @Date 2020/9/11 14:28
+     * @param
+     * @Return java.lang.String
+     **/
+    @RequestMapping(value = "/modular" , method = RequestMethod.GET)
+    public String modular() {
+        return PREFIX+"/modular";
+    }
 }
