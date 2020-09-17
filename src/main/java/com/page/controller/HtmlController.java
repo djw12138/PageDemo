@@ -66,6 +66,15 @@ public class HtmlController {
     }
 
     /**
+     * 菜单2
+     * @return
+     */
+    @RequestMapping(value = "/menu2" , method = RequestMethod.GET)
+    public String menu2() {
+        return PREFIX+"/menu2";
+    }
+
+    /**
      * @Author dai jiawei
      * @Description 查询分页数据
      * @Date 2020/9/1 8:44
