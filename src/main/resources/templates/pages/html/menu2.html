@@ -5,20 +5,51 @@
     <title>Title</title>
     <style>
         .outer {
-            height: 1000px;
             width: 100%;
         }
 
         .menu {
-            height: 500px;
             width: 100%;
-            background: antiquewhite;
         }
 
         .title {
-            background: cornflowerblue;
-            line-height: 40px;
+            width:100%;
+            font-size: 30px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #393939;
+            height: 80px;
+            background-color:#ffffff;
         }
+
+        .menu .title:not(:last-child) {
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .title-left{
+            width:50%;
+            height:100%;
+            padding:0px 0px 0px 20px;
+            line-height: 80px;
+        }
+
+        .second-title {
+            width:100%;
+            font-size: 26px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #393939;
+            height: 80px;
+            background: #F9F9F9;;
+        }
+
+         .second-title-left{
+            width:50%;
+            height:100%;
+            padding:0px 0px 0px 60px;
+            line-height: 80px;
+         }
+
         .hide{
             display: none;
         }
@@ -28,27 +59,26 @@
 <div class="outer">
     <div class="menu">
         <div class="item">
-            <div class="title" onclick="show(this)"> 菜单一</div>
+            <div class="title" onclick="show(this)"><div class="title-left">生产</div></div>
             <div class="con">
-                <div>111</div>
-                <div>222</div>
-                <div>333</div>
+                <div class="second-title"><div class="second-title-left">着色工艺</div></div>
+                <div class="second-title"><div class="second-title-left">光纤二套工艺</div></div>
             </div>
         </div>
         <div class="item">
             <div class="title" onclick="show(this)"> 菜单二</div>
             <div class="con hide">
-                <div>111</div>
-                <div>222</div>
-                <div>333</div>
+                <div class="second-title">111</div>
+                <div class="second-title">222</div>
+                <div class="second-title">333</div>
             </div>
         </div>
         <div class="item">
             <div class="title" onclick="show(this)"> 菜单三</div>
             <div class="con hide">
-                <div>111</div>
-                <div>222</div>
-                <div>333</div>
+                <div class="second-title">111</div>
+                <div class="second-title">222</div>
+                <div class="second-title">333</div>
             </div>
         </div>
 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现菜单的下拉</title>
+    <style>
+        body{
+            background:	#808080;
+        }
+
+	    ul{
+	        width:100%;
+	        list-style:none;
+            padding: 0;
+            margin:0;
+	    }
+
+	    ul li{
+	        margin:0;
+	        padding: 5px 15px 5px 5px;
+            margin-left: 5px;
+            font-size: 28px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            line-height: 80px;
+            color: #393939;
+            background-color:#ffffff;
+            overflow: auto;
+	    }
+	    ul li:not(:last-child) {
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        li .submenu{
+            margin:0;
+	        padding: 25px 15px 5px 5px;
+            margin-left: 5px;
+            font-size: 28px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            line-height: 80px;
+            color: #393939;
+            background-color:#ffffff;
+        }
+
+<!--	    li .active{-->
+<!--	        background-color:#b0bac7-->
+<!--	    }-->
+
+	    .list-line{
+	        font-size: 28px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            line-height: 80px;
+            color: #393939;
+	    }
+	</style>
+</head>
+<body>
+<div>
+    <ul>
+        <li>
+            <div style="width:40%;height:100%;float:left">
+                流程步骤
+            </div>
+            <div style="width:60%;height:100%;float:left">
+                产品-流程
+            </div>
+        </li>
+        <li>
+            <div>
+
+            </div>
+        </li>
+    </ul>
+    <div class="list-line">
+        流程
+    </div>
+    <ul>
+        <!-- 第一项菜单-->
+        <li>
+            <a class="ll"><div style="width:100%;height:100%">生产</div></a>
+            <ul style="display:none">
+                <li class="submenu">着色工艺</li>
+                <li class="submenu">光纤二套工艺</li>
+            </ul>
+        </li>
+        <!-- 第二项菜单 -->
+        <li>
+            <a class="ll"><div style="width:100%;height:100%">生产</div></a>
+            <ul style="display:none">
+                <li class="submenu">着色工艺</li>
+                <li class="submenu">光纤二套工艺</li>
+            </ul>
+        </li>
+        <!-- 第三项菜单 -->
+        <li>
+            <a  class="ll"><div style="width:100%;height:100%">生产</div></a>
+            <ul style="display:none">
+                <li class="submenu">着色工艺</li>
+                <li class="submenu">光纤二套工艺</li>
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+<script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+<script>
+     //菜单的展开和收回
+     $('.ll').click(function(){
+		 var li_list=$(this).next();
+		 var otherli_list = $("a").next().not($(this).next());
+         otherli_list.hide();
+		 li_list.toggle(500);
+	 });
+   //添加样式
+<!--     $("li[class='submenu']").click(function(){-->
+<!--	  $("li").next().siblings().removeClass('active');-->
+<!--      $(this).removeClass('active');-->
+<!--      $(this).addClass('active');-->
+<!--	});-->
+
+
+  </script>
+</body>
+</html>

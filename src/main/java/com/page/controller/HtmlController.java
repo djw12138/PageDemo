@@ -66,6 +66,18 @@ public class HtmlController {
     }
 
     /**
+     * @Author dai jiawei
+     * @Description 菜单
+     * @Date 2020/9/17 15:45
+     * @param
+     * @Return java.lang.String
+     **/
+    @RequestMapping(value = "/menu" , method = RequestMethod.GET)
+    public String menu() {
+        return PREFIX+"/menu";
+    }
+
+    /**
      * 菜单2
      * @return
      */

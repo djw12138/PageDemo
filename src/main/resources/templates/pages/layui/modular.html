@@ -29,32 +29,67 @@
             font-weight: bold;
             line-height: 35px;
         }
+
+        .layui-elem-quote-change{
+            margin-bottom:10px;
+            padding:15px;
+            line-height:22px;
+            border-radius:0 2px 2px 0;
+        }
+
     </style>
 </head>
 <body>
     <div class="layui-fluid">
-        <div class="layui-card key-description layui-form">
-            <div class="layui-card-header">昨日关键指标</div>
-            <div class="layui-form-item">
-                <div class="layui-card-body">
-                    <div class="key-container">
-                        <div class="layui-col-md3 key-item">
-                            <p>调用次数</p>
-                            <p class="key-item-value">N\A</p>
-                        </div>
-                        <div class="layui-col-md3 key-item">
-                            <p>失败率</p>
-                            <p class="key-item-value">N\A</p>
-                        </div>
-                        <div class="layui-col-md3 key-item">
-                            <p>平均耗时（毫秒）</p>
-                            <p class="key-item-value">N\A</p>
-                        </div>
-                        <div class="layui-col-md3 key-item">
-                            <p>最大耗时（毫秒）</p>
-                            <p class="key-item-value">N\A</p>
+        <div class="layui-col-xs12">
+            <div class="layui-card key-description layui-form">
+                <div class="layui-card-header">昨日关键指标</div>
+                <div class="layui-form-item">
+                    <div class="layui-card-body">
+                        <div class="key-container">
+                            <div class="layui-col-md3 key-item">
+                                <p>调用次数</p>
+                                <p class="key-item-value">N\A</p>
+                            </div>
+                            <div class="layui-col-md3 key-item">
+                                <p>失败率</p>
+                                <p class="key-item-value">N\A</p>
+                            </div>
+                            <div class="layui-col-md3 key-item">
+                                <p>平均耗时（毫秒）</p>
+                                <p class="key-item-value">N\A</p>
+                            </div>
+                            <div class="layui-col-md3 key-item">
+                                <p>最大耗时（毫秒）</p>
+                                <p class="key-item-value">N\A</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-xs4">
+                <div class="layui-card">
+                    <div class="layui-card">
+                        <div class="layui-card-header">标识排行</div>
+                        <div  style="font-size:16px" id="ViewPhbInfo">
+                            <!--排行榜载体-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-xs4">
+                <div class="layui-card">
+                    <div style="height: 274px;"></div>
+
+                </div>
+            </div>
+            <div class="layui-col-xs4">
+                <div class="layui-card">
+                    <div style="height: 274px;"></div>
+
                 </div>
             </div>
         </div>
@@ -62,5 +97,35 @@
 
     <script src="/js/layui/layui.js"></script>
     <script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+
+    <script>
+        var PhCount = 10;//排行榜数量
+	    //每个排行榜单的颜色
+        var PhRdColor = ["red", "orange", "orange", "green", "green", "cyan", "blue", "black", "black", "blue"];
+
+        var FxDATA ={};
+		FxDATA.View=[];//可以从后台请求数据 这个地方进行模拟数据
+		FxDATA.View.push({ViewCount:1100,MC:"测试数据1100点击"});
+		FxDATA.View.push({ViewCount:800,MC:"测试数据800点击"});
+		FxDATA.View.push({ViewCount:700,MC:"测试数据700点击"});
+		FxDATA.View.push({ViewCount:660,MC:"测试数据660点击"});
+		FxDATA.View.push({ViewCount:600,MC:"测试数据600点击"});
+		FxDATA.View.push({ViewCount:500,MC:"测试数据500点击"});
+		FxDATA.View.push({ViewCount:400,MC:"测试数据400点击"});
+		FxDATA.View.push({ViewCount:300,MC:"测试数据300点击"});
+		FxDATA.View.push({ViewCount:100,MC:"测试数据100点击"});
+        if (FxDATA != null && FxDATA.View != undefined) {//浏览量总排行榜
+            str = "<blockquote class='layui-elem-quote-change'>";//排行榜的载体
+            for (var i = 0; i < FxDATA.View.length; i++) {
+                if (i != 0) {
+                    str = str + "<br>";
+                }
+				//分别表示排行榜的热度颜色 排行榜的点击数量 当前热度排行的名称
+                str = str + "<span class='layui-badge-dot layui-bg-" + PhRdColor[i] + "'></span> <span class='layui-badge-rim'>" + FxDATA.View[i].ViewCount + "</span> <a>" + FxDATA.View[i].MC + "</a>";
+            }
+            str = str + "</blockquote> ";
+            $("#ViewPhbInfo").append(str);
+        }
+    </script>
 </body>
 </html>
