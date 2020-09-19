@@ -1,0 +1,204 @@
+@layout("layout.html",{
+@  title: "数据录入"
+@}){
+@var defaultLogo = ctxPath + "/assets/expand/images/favicon.ico";
+@var basePath = ctxPath + "/wx";
+@var baseAssetPath = ctxPath + "/assets/template/wx";
+
+<style type="text/css" >
+     body{
+        background:#FFFFFF;
+     }
+
+     .title-style{
+        font-size: 16px;
+        font-family: PingFang SC;
+        font-weight: 400;
+        color: #393939;
+        height: 40px;
+        width:100%;
+        line-height: 40px;
+        color: #999999;
+        padding: 0px 0px 0px 5%;
+     }
+
+     .value-style{
+        font-size: 16px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #393939;
+        width:100%;
+        line-height: 40px;
+        color: #393939;;
+        padding: 0px 5% 0px 5%;
+     }
+
+     .value-style input{
+        height: 40px;
+        width:100%;
+        background: #F5F5F5;
+        border-radius: 4px;
+        border:none;
+        padding: 0px 5% 0px 5%;
+     }
+
+     .value-style textarea{
+        min-height: 120px;
+        width:100%;
+        background: #F5F5F5;
+        border-radius: 4px;
+        border:none;
+        padding: 0px 5% 0px 5%;
+     }
+
+     #image_list{
+        width:100%;
+        padding: 0px 5% 0px 5%;
+     }
+
+     .image_add_icon{
+        width:90px;
+        height:90px;
+        background:#F5F5F5;
+        float:left;
+        margin-right:15px;
+        margin-top:15px;
+     }
+
+     .image_add_icon img {
+        max-width:100%;
+        max-height:100%;
+        padding: 25% 25% 25% 25%;
+     }
+
+     .image_show_container{
+        width:90px;
+        height:90px;
+        float:left;
+        margin-right:15px;
+        margin-top:15px;
+        background:#F5F5F5;
+        position: relative;
+     }
+
+     .image_del{
+        width:20px;
+        height:20px;
+        border-radius:60%;
+        position:absolute;
+        top:-10px;
+        right:-10px;
+        z-index:2;
+     }
+
+     .image_show{
+        position:relative;
+        top:0px;
+        width:100%;
+        height:100%;
+     }
+
+     .image_show img {
+        max-width:100%;
+        max-height:100%;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+     }
+</style>
+<div class="layui-layout-body">
+    <div class="title-style">流程步骤</div>
+    <div class="value-style"><input value="生产/着色工艺" readonly/></div>
+    <div class="title-style">操作人</div>
+    <div class="value-style"><input placeholder="请输入操作人"/></div>
+    <div class="title-style">操作岗位</div>
+    <div class="value-style"><input placeholder="请输入操作岗位"/></div>
+    <div class="title-style">描述</div>
+    <div class="value-style"><textarea placeholder="请输入描述"></textarea></div>
+    <div class="title-style">上传图片</div>
+    <div id="image_list">
+        <div class="image_add_icon">
+            <label><img src="${baseAssetPath}/img/image_add.png"/>
+                <input style="display:none" type="file" name="file" id="upimg" onchange="uploadImage(this)"/>
+            </label>
+        </div>
+
+        <div class="image_show_container">
+            <img src="${baseAssetPath}/img/image_delete.png" class="image_del" onclick="deleteImage(this)"/>
+            <div class="image_show">
+                <input type="hidden" id="paperImg" name="paperImg"/>
+                <img id="previewZ" src="">
+            </div>
+        </div>
+
+        <div class="image_show_container">
+            <img src="${baseAssetPath}/img/image_delete.png" class="image_del" onclick="alert(1)"/>
+            <div class="image_show">
+                <input type="hidden" id="paperImg2" name="paperImg"/>
+                <img id="previewZ2" src="">
+            </div>
+        </div>
+
+        <div class="image_show_container">
+            <img src="${baseAssetPath}/img/image_delete.png" class="image_del" onclick="alert(1)"/>
+            <div class="image_show">
+                <input type="hidden" id="paperImg3" name="paperImg"/>
+                <img id="previewZ3" src="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var basePath = "${basePath}";
+    //图片上传
+    function uploadImage(obj) {
+        var fileName = $("#upimg").val();//文件名
+        var extName = fileName.substr(fileName.lastIndexOf('.'), fileName.length);//文件后缀
+        //判断图片格式
+        if (null == extName || undefined == extName || "" == extName) {
+            return;
+        } else if (".jpg" != extName && ".png" != extName && ".gif" != extName && ".bmp" != extName && ".jpeg" != extName) {
+            hint(false, '非图片格式! ');
+            return;
+        }
+        var formData = new FormData(); // FormData 对象
+        formData.append("file", obj.files[0]); // 文件对象
+        $.ajax({
+            method: 'post',
+            url: basePath + '/uploadPic',
+            data: formData,
+            dataType: "json",
+            mimeType: "multipart/form-data",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.success) {
+                    $("#previewZ").attr("src", data.data);
+                    $("#paperImg").val(data.data);
+                    $("#previewZ2").attr("src", data.data);
+                    $("#paperImg2").val(data.data);
+                    $("#previewZ3").attr("src", data.data);
+                    $("#paperImg3").val(data.data);
+                } else {
+                    var msg = data ? data.message : '服务器错误.';
+                    hint(false, '提交失败! ' + msg);
+                }
+            },
+            error: function (xhr) {
+                var r = xhr.responseJSON;
+                var msg = r ? r.message : '服务器错误.';
+                hint(false, '提交失败! ' + msg);
+            }
+        })
+    };
+
+    //删除图片
+    function deleteImage(obj){
+        $(obj).parent().remove();
+    }
+</script>
+@}
+
