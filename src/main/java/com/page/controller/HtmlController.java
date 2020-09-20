@@ -87,6 +87,15 @@ public class HtmlController {
     }
 
     /**
+     * 文件上传
+     * @return
+     */
+    @RequestMapping(value = "/upload" , method = RequestMethod.GET)
+    public String upload() {
+        return PREFIX+"/upload";
+    }
+
+    /**
      * @Author dai jiawei
      * @Description 查询分页数据
      * @Date 2020/9/1 8:44
