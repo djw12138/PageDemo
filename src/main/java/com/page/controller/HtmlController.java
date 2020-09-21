@@ -87,6 +87,15 @@ public class HtmlController {
     }
 
     /**
+     * 提示
+     * @return
+     */
+    @RequestMapping(value = "/tip" , method = RequestMethod.GET)
+    public String tip() {
+        return PREFIX+"/tip";
+    }
+
+    /**
      * @Author dai jiawei
      * @Description 查询分页数据
      * @Date 2020/9/1 8:44
