@@ -10,6 +10,7 @@
     .alert{
         min-width: 150px;
         text-align: center;
+        border:none;
     }
 
     .alert-danger{
@@ -63,13 +64,8 @@
         ShowTip(msg, 'danger');
     }
 
-    function ShowWarn(msg, $focus, clear) {
+    function ShowWarn(msg) {
         ShowTip(msg, 'warning');
-        if ($focus) {
-    　　　　 $focus.focus();
-        　　if (clear) $focus.val('');
-    　　 }
-        return false;
     }
 </script>
 </body>

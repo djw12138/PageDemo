@@ -101,6 +101,16 @@ public class HtmlController {
     }
 
     /**
+     * 文件上传
+     *
+     * @return
+     */
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String upload() {
+        return PREFIX + "/upload";
+    }
+
+    /**
      * @param page
      * @param limit
      * @Author dai jiawei
