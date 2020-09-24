@@ -7,18 +7,44 @@
 </head>
 <body>
 <style>
+    .alert{
+        min-width: 150px;
+        text-align: center;
+    }
+
     .alert-danger{
-        background:red;
+        background:#F56C6C;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+
+    .alert-info{
+        background:#909399;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+
+    .alert-success{
+        background:#67C23A;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+
+    .alert-warning{
+        background:#E6A23C;
         color:#ffffff;
         border-radius: 4px;
     }
 </style>
-
+    <button onclick="ShowSuccess('成功')">成功</button>
+    <button onclick="ShowFailure('失败')">失败</button>
+    <button onclick="ShowMsg('这是一个提示！')">提示</button>
+    <button onclick="ShowWarn('这是一个警告！！！！！！！！！')">警告</button>
 <script>
     function ShowTip(tip, type) {
         var $tip = $('#tip');
         if ($tip.length == 0) {
-        // 设置样式，也可以定义在css文件中
+            //设置样式，也可以定义在css文件中
             $tip = $('<span id="tip" style="position:fixed;top:50px;left: 50%;z-index:9999;height: 35px;padding: 0 20px;line-height: 35px;"></span>');
             $('body').append($tip);
         }
@@ -45,10 +71,6 @@
     　　 }
         return false;
     }
-
-    $(function(){
-        ShowFailure("失败！");
-    });
 </script>
 </body>
 </html>

@@ -16,14 +16,14 @@ public class ReportController {
     private static String PREFIX = "pages/report";
 
     /**
+     * @param
      * @Author dai jiawei
      * @Description 中远大屏页面
      * @Date 2020/8/21 9:29
-     * @param
      * @Return java.lang.String
      **/
-    @RequestMapping(value = "/zydwReport" , method = RequestMethod.GET)
+    @RequestMapping(value = "/zydwReport", method = RequestMethod.GET)
     public String zydwReport() {
-        return PREFIX+"/zydw_view";
+        return PREFIX + "/zydw_view";
     }
 }

@@ -2,13 +2,12 @@ package com.page.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.Date;
 
 /**
  * @Author: dai jiawei
@@ -40,23 +39,23 @@ public class ZydwReportController {
     }
 
     /**
+     * @param
      * @Author dai jiawei
      * @Description 第二个图表数据查询
      * @Date 2020/8/19 15:44
-     * @param
      * @Return com.alibaba.fastjson.JSONObject
      **/
     @RequestMapping(value = "/queryTwo", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject queryTwo() {
         JSONObject resultJson = new JSONObject();
-        JSONArray dataArray= new JSONArray();
+        JSONArray dataArray = new JSONArray();
 
-        for (int i = 0; i <20 ; i++) {
+        for (int i = 0; i < 20; i++) {
             JSONObject json = new JSONObject();
-            json.put("cardMac",i);
-            json.put("personName",i*5);
-            json.put("hours",i*10);
+            json.put("cardMac", i);
+            json.put("personName", i * 5);
+            json.put("hours", i * 10);
             dataArray.add(json);
         }
         resultJson.put("data", dataArray);
@@ -103,13 +102,13 @@ public class ZydwReportController {
     @ResponseBody
     public JSONObject queryFour() {
         JSONObject resultJson = new JSONObject();
-        JSONArray dataArray= new JSONArray();
+        JSONArray dataArray = new JSONArray();
 
-        for (int i = 0; i <20 ; i++) {
+        for (int i = 0; i < 20; i++) {
             JSONObject json = new JSONObject();
-            json.put("time",new Date());
-            json.put("from",i);
-            json.put("name",i);
+            json.put("time", new Date());
+            json.put("from", i);
+            json.put("name", i);
             dataArray.add(json);
         }
         resultJson.put("data", dataArray);
@@ -143,7 +142,7 @@ public class ZydwReportController {
             json.put("name", legend);
             json.put("type", "line");
             //json.put("stack", "总量");
-            json.put("smooth",true);
+            json.put("smooth", true);
 
             double[] datas = new double[categorys.length];
 
@@ -151,7 +150,7 @@ public class ZydwReportController {
                 datas[j] = Math.random() * 100;
             }
 
-            json.put("data",datas);
+            json.put("data", datas);
             dataArray.add(json);
         }
 
@@ -174,13 +173,13 @@ public class ZydwReportController {
     public JSONObject querySix() {
         //获取出入围栏实时记录数据
         JSONObject resultJson = new JSONObject();
-        JSONArray dataArray= new JSONArray();
+        JSONArray dataArray = new JSONArray();
 
-        for (int i = 0; i <20 ; i++) {
+        for (int i = 0; i < 20; i++) {
             JSONObject json = new JSONObject();
-            json.put("time",new Date());
-            json.put("from",i);
-            json.put("name",i);
+            json.put("time", new Date());
+            json.put("from", i);
+            json.put("name", i);
             dataArray.add(json);
         }
         resultJson.put("data", dataArray);
