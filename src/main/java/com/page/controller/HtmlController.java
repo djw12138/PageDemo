@@ -111,6 +111,16 @@ public class HtmlController {
     }
 
     /**
+     * tab页
+     *
+     * @return
+     */
+    @RequestMapping(value = "/tab", method = RequestMethod.GET)
+    public String tab() {
+        return PREFIX + "/tab";
+    }
+
+    /**
      * @param page
      * @param limit
      * @Author dai jiawei
