@@ -74,7 +74,36 @@
 </div>
 <script>
     function uploadImage(obj) {
-
+        var  cur_obj = $(this);
+        var  file_obj  = this.files[0];
+        if(file_obj === undefined){
+            layer.msg('没有选择文件');
+            return;
+        }
+        if (file_obj.size > 2097152) {
+            layer.msg("图片大小不能超过2M");
+            return;
+        }
+        var formData = new FormData();
+        formData.append("type", "image");//其它参数
+        formData.append("content", file_obj);//文件对象
+        $.ajax({
+            url: '/fileController/upload',
+            type: 'POST',
+            dataType: "json",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                cur_obj.parent().find('span').html('上传中');
+            },
+            success: function(result){
+                console.log(result);
+                cur_obj.parent().find('span').html('上传图片完成');
+                alert("success");
+            }
+        });
     }
 
     //删除图片

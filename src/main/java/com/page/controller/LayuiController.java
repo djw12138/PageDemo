@@ -30,4 +30,13 @@ public class LayuiController {
     public String modular() {
         return PREFIX+"/modular";
     }
+
+    /**
+     * 弹出框
+     * @return
+     */
+    @RequestMapping(value = "/layer" , method = RequestMethod.GET)
+    public String layer() {
+        return PREFIX+"/layer";
+    }
 }
