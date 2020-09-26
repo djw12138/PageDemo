@@ -16,108 +16,133 @@ public class HtmlController {
 
     /**
      * 分页
+     *
      * @return
      */
-    @RequestMapping(value = "/paging" , method = RequestMethod.GET)
+    @RequestMapping(value = "/paging", method = RequestMethod.GET)
     public String paging() {
-        return PREFIX+"/paging";
+        return PREFIX + "/paging";
     }
 
     /**
      * 轮播图
+     *
      * @return
      */
-    @RequestMapping(value = "/rotationChart" , method = RequestMethod.GET)
+    @RequestMapping(value = "/rotationChart", method = RequestMethod.GET)
     public String rotationChart() {
-        return PREFIX+"/rotation_chart";
+        return PREFIX + "/rotation_chart";
     }
 
     /**
      * 轮播图
+     *
      * @return
      */
-    @RequestMapping(value = "/rotationChart2" , method = RequestMethod.GET)
+    @RequestMapping(value = "/rotationChart2", method = RequestMethod.GET)
     public String rotationChart2() {
-        return PREFIX+"/rotation_chart2";
+        return PREFIX + "/rotation_chart2";
     }
 
     /***
      * @Author dai jiawei
      * @Description 滑动
      * @Date 2020/9/1 19:14
-     * @param 
+     * @param
      * @Return java.lang.String
      **/
-    @RequestMapping(value = "/slide" , method = RequestMethod.GET)
+    @RequestMapping(value = "/slide", method = RequestMethod.GET)
     public String slide() {
-        return PREFIX+"/slide";
+        return PREFIX + "/slide";
     }
 
     /**
+     * @param
      * @Author dai jiawei
      * @Description 颜色
      * @Date 2020/9/10 10:59
-     * @param
      * @Return java.lang.String
      **/
-    @RequestMapping(value = "/color" , method = RequestMethod.GET)
+    @RequestMapping(value = "/color", method = RequestMethod.GET)
     public String color() {
-        return PREFIX+"/color";
+        return PREFIX + "/color";
     }
 
     /**
+     * @param
      * @Author dai jiawei
      * @Description 菜单
      * @Date 2020/9/17 15:45
-     * @param
      * @Return java.lang.String
      **/
-    @RequestMapping(value = "/menu" , method = RequestMethod.GET)
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public String menu() {
-        return PREFIX+"/menu";
+        return PREFIX + "/menu";
     }
 
     /**
      * 菜单2
+     *
      * @return
      */
-    @RequestMapping(value = "/menu2" , method = RequestMethod.GET)
+    @RequestMapping(value = "/menu2", method = RequestMethod.GET)
     public String menu2() {
-        return PREFIX+"/menu2";
+        return PREFIX + "/menu2";
+    }
+
+    /**
+     * 提示
+     *
+     * @return
+     */
+    @RequestMapping(value = "/tip", method = RequestMethod.GET)
+    public String tip() {
+        return PREFIX + "/tip";
     }
 
     /**
      * 文件上传
+     *
      * @return
      */
-    @RequestMapping(value = "/upload" , method = RequestMethod.GET)
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public String upload() {
-        return PREFIX+"/upload";
+        return PREFIX + "/upload";
     }
 
     /**
+     * tab页
+     *
+     * @return
+     */
+    @RequestMapping(value = "/tab", method = RequestMethod.GET)
+    public String tab() {
+        return PREFIX + "/tab";
+    }
+
+    /**
+     * @param page
+     * @param limit
      * @Author dai jiawei
      * @Description 查询分页数据
      * @Date 2020/9/1 8:44
-     * @param page
-     * @param limit
      * @Return com.alibaba.fastjson.JSONObject
      **/
-    @RequestMapping(value = "/queryPageData" , method = RequestMethod.POST)
+    @RequestMapping(value = "/queryPageData", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject queryPageData(@RequestParam(name = "page",required = false,defaultValue = "1") Integer page,
-                                    @RequestParam(name = "id",required = false,defaultValue = "10") Integer limit) {
+    public JSONObject queryPageData(@RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
+                                    @RequestParam(name = "id", required = false, defaultValue = "10") Integer limit) {
         JSONObject resultJson = new JSONObject();
-        JSONArray dataArray= new JSONArray();
-        if(page<=5) {
+        JSONArray dataArray = new JSONArray();
+        if (page <= 5) {
             for (int i = 0; i < limit; i++) {
                 JSONObject json = new JSONObject();
                 json.put(i + "", page);
                 dataArray.add(json);
             }
         }
-        resultJson.put("data",dataArray);
-        resultJson.put("totalSize",100000);
+        resultJson.put("data", dataArray);
+        resultJson.put("totalSize", 100000);
         return resultJson;
     }
 }

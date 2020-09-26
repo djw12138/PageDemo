@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+    <link rel="stylesheet" href="/js/swiper/swiper-bundle.css">
+</head>
+<body>
+<style>
+
+</style>
+<div class="myIndentNav_div">
+    <ul class="myIndentNav">
+        <li class="active" data-id = "all">全部<span></span></li>
+        <li data-id="0">待付款<span></span><div class="obligation"></div></li>
+        <li data-id="8">待分享<span></span><div class="share"></div></li>
+        <li data-id="1">待发货<span></span><div class="drop_shipping"></div></li>
+        <li data-id="2">待收货<span></span><div class="wait_receiv"></div></li>
+        <li data-id="5">待评价<span></span><div class="evaluate"></div></li>
+        <li data-id="7">待自提<span></span><div class="pick"></div></li>
+        <li data-id="4">售后/退款<span></span><div class="after"></div></li>
+        <li data-id="3">已完成<span></span></li>
+        <li data-id="6">已关闭<span></span></li>
+    </ul>
+</div>
+<!--这是swiper模块  具体不讲解 可以看看官网-->
+<div class="myIndentDiv">
+    <div id="indentModel">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+                <div class="swiper-slide"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/swiper/swiper-bundle.js"></script>
+<script>
+    //滑动模块切花
+    var $index=0
+    var page=1
+    $(function(){
+        var mySwiper = new Swiper('.swiper-container', {
+                centeredSlides: true,
+                paginationClickable: true,
+                nested:true,
+                on:{
+                    slideChange: function(){
+                            let left=$('.myIndentNav').scroll()[0].scrollWidth-$('.myIndentNav').width()
+                            if(this.activeIndex>4){
+                                $('.myIndentNav').animate({scrollLeft:left},500)
+                            }else{
+                                $('.myIndentNav').animate({scrollLeft:0},500)
+                            }
+                            status=$('.myIndentNav li').eq(this.activeIndex).attr('data-id')
+                            $('.myIndentNav li').eq(this.activeIndex).addClass('active').siblings().removeClass('active')
+                            $index=this.activeIndex
+                            page=1
+                            pageSate=true
+                            $('#indentModel .swiper-slide').eq($index).html('')
+                            $(document).scrollTop(0)
+                            myIndentList()//这是切换后请求数据的方法
+                            //setbuyerOderNum()//这是我请求 tab上面数字的接口
+                            //加上定时器  防止快速点击切换
+                            setTimeout(function(){
+                                time=true
+                            },500)
+                    },
+                  },
+            })
+        //点击tab切换
+        $('.myIndentNav li').click(function(){
+                //这是判断当前点击的是否是当前已显示的 如果不是才会执行下面的代码
+                if($(this).attr('data-id')!=status){
+                    $('.swiper-container').css('height','100%')
+                    if(time){
+                        time= false;
+        $(this).addClass('active').siblings().removeClass('active')
+                            $index=$(this).index()//获取当前点击的键值
+                            status=$(this).attr('data-id')
+                            $('#indentModel .swiper-slide').eq($index).html('')
+                            page=1//页码
+                            pageSate=true
+                            mySwiper.slideTo($index);//这是swiper 切换方法  $index是切换到第几个
+                            //setbuyerOderNum()//这是我请求 tab上面数字的接口
+                    }
+
+
+                }
+            })
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+    <link rel="stylesheet" href="/js/swiper/swiper-bundle.css">
+</head>
+<body>
+<style>
+    .swiper-slide{
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .swiper-slide-active .tab-title{
+        color: #004DA1;
+        border-bottom-width: 3px;
+        border-bottom-color: #004DA1;
+    }
+</style>
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+        <div class="swiper-slide"><div class="tab-title">酿造过程</div></div>
+    </div>
+</div>
+
+<script src="/js/swiper/swiper-bundle.js"></script>
+<script>
+   var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 5,
+        direction: getDirection(),
+        centeredSlides : true,
+        slideToClickedSlide: true,//点击跳转
+        on: {
+            resize: function () {
+                swiper.changeDirection(getDirection());
+            }
+        }
+   });
+
+   function getDirection() {
+      var windowWidth = window.innerWidth;
+      var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+
+      return direction;
+   }
+</script>
+</body>
+</html>

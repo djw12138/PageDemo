@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+</head>
+<body>
+<style>
+    .alert{
+        min-width: 150px;
+        text-align: center;
+        border:none;
+    }
+
+    .alert-danger{
+        background:#F56C6C;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+
+    .alert-info{
+        background:#909399;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+
+    .alert-success{
+        background:#67C23A;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+
+    .alert-warning{
+        background:#E6A23C;
+        color:#ffffff;
+        border-radius: 4px;
+    }
+</style>
+    <button onclick="ShowSuccess('成功')">成功</button>
+    <button onclick="ShowFailure('失败')">失败</button>
+    <button onclick="ShowMsg('这是一个提示！')">提示</button>
+    <button onclick="ShowWarn('这是一个警告！！！！！！！！！')">警告</button>
+<script>
+    function ShowTip(tip, type) {
+        var $tip = $('#tip');
+        if ($tip.length == 0) {
+            //设置样式，也可以定义在css文件中
+            $tip = $('<span id="tip" style="position:fixed;top:50px;left: 50%;z-index:9999;height: 35px;padding: 0 20px;line-height: 35px;"></span>');
+            $('body').append($tip);
+        }
+        $tip.stop(true).prop('class', 'alert alert-' + type).text(tip).css('margin-left', -$tip.outerWidth() / 2).fadeIn(500).delay(2000).fadeOut(500);
+    }
+
+    function ShowMsg(msg) {
+        ShowTip(msg, 'info');
+    }
+
+    function ShowSuccess(msg) {
+        ShowTip(msg, 'success');
+    }
+
+    function ShowFailure(msg) {
+        ShowTip(msg, 'danger');
+    }
+
+    function ShowWarn(msg) {
+        ShowTip(msg, 'warning');
+    }
+</script>
+</body>
+</html>
