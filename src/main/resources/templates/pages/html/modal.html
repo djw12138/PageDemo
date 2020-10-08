@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+</head>
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        .containenr {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-size: cover;
+            position: relative;
+        }
+        .dialog {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, .7);
+        }
+        .content {
+            width: 600px;
+            height: 600px;
+            background-color: yellow;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -300px;
+            margin-left: -300px;
+        }
+        .btn {
+            width: 200px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: red;
+            font-weight: 600;
+            background-color: aquamarine;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+
+    <div class="containenr">
+        <div id="btn" class="btn">点我显示遮罩层</div>
+        <div id="dialog" class="dialog hide">
+            <div id="content" class="content"></div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            var dialog = document.getElementById('dialog');
+            var content = document.getElementById('content');
+            var btn = document.getElementById('btn');
+
+            //点击显示遮罩层
+            btn.onclick = function () {
+                dialog.classList.remove('hide');
+                // dialog.style.display = 'block';
+            }
+
+            //点击除黄色区域隐藏遮罩层
+            dialog.addEventListener('click',function(e){
+                //阻止冒泡
+                window.event ? window.event.cancelBubble = true : e.stopPropagation();
+                var e = window.e || e;
+                var el = e.target || e.srcElement;
+                //获取当前点击区域的className
+                var el_name = el.className;
+                console.log(el_name);
+                //如果点击区域等于内容区域就return，否则就隐藏
+                if(el_name == 'content') {
+                    return;
+                }else {
+                    dialog.classList.add('hide');
+                    // dialog.style.display = 'none';
+                }
+            })
+        }
+    </script>
+</body>
+</html>

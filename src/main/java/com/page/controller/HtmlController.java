@@ -121,6 +121,26 @@ public class HtmlController {
     }
 
     /**
+     * css样式
+     *
+     * @return
+     */
+    @RequestMapping(value = "/css", method = RequestMethod.GET)
+    public String css() {
+        return PREFIX + "/css";
+    }
+
+    /**
+     * 遮盖
+     *
+     * @return
+     */
+    @RequestMapping(value = "/modal", method = RequestMethod.GET)
+    public String modal() {
+        return PREFIX + "/modal";
+    }
+
+    /**
      * @param page
      * @param limit
      * @Author dai jiawei
