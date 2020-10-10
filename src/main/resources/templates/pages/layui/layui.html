@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layer</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+    <style>
+    </style>
+</head>
+<body>
+    <script src="/js/layui/layui.js"></script>
+    <script src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+
+    <div style="width: 100px;height: 100px" class="test_one">
+        <button class="test">测试点击事件</button>
+    </div>
+    <script>
+        layui.use(['layer'], function () {
+            var layer = layui.layer;
+            var $ = layui.jquery;
+
+            $(document).on("click",".test_one",function (event){
+                var el = event.target || event.srcElement;
+                console.log(el);
+                //获取当前点击区域的className
+                var el_name = el.className;
+                console.log(el_name);
+            });
+        });
+    </script>
+</body>
+</html>

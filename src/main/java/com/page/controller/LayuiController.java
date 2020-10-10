@@ -14,7 +14,7 @@ public class LayuiController {
      * 主页
      * @return
      */
-    @RequestMapping(value = "/layuiAdmin" , method = RequestMethod.GET)
+    @RequestMapping(value = "" , method = RequestMethod.GET)
     public String layuiAdmin() {
         return PREFIX+"/layuiAdmin";
     }
@@ -38,5 +38,14 @@ public class LayuiController {
     @RequestMapping(value = "/layer" , method = RequestMethod.GET)
     public String layer() {
         return PREFIX+"/layer";
+    }
+
+    /**
+     * 基础功能
+     * @return
+     */
+    @RequestMapping(value = "/layui" , method = RequestMethod.GET)
+    public String layui() {
+        return PREFIX+"/layui";
     }
 }
