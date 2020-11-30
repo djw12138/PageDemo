@@ -48,4 +48,16 @@ public class LayuiController {
     public String layui() {
         return PREFIX+"/layui";
     }
+
+    /**
+     * @Author dai jiawei
+     * @Description 省市县级联
+     * @Date 2020/11/16 11:04
+     * @param 
+     * @Return java.lang.String
+     **/
+    @RequestMapping(value = "/city" , method = RequestMethod.GET)
+    public String city() {
+        return PREFIX+"/city";
+    }
 }

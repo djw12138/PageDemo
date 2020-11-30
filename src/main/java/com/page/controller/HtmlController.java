@@ -141,6 +141,36 @@ public class HtmlController {
     }
 
     /**
+     * 密码校验
+     *
+     * @return
+     */
+    @RequestMapping(value = "/passwordValidate", method = RequestMethod.GET)
+    public String passwordValidate() {
+        return PREFIX + "/passwordValidate";
+    }
+
+    /**
+     * 电子签章（圆形）
+     *
+     * @return
+     */
+    @RequestMapping(value = "/electronicSignatureCircular", method = RequestMethod.GET)
+    public String electronicSignatureCircular() {
+        return PREFIX + "/electronicSignatureCircular";
+    }
+
+    /**
+     * 电子签章（椭圆形）
+     *
+     * @return
+     */
+    @RequestMapping(value = "/electronicSignatureEllipse", method = RequestMethod.GET)
+    public String electronicSignatureEllipse() {
+        return PREFIX + "/electronicSignatureEllipse";
+    }
+
+    /**
      * @param page
      * @param limit
      * @Author dai jiawei

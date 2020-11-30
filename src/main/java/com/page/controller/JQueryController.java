@@ -18,4 +18,13 @@ public class JQueryController {
     public String slide() {
         return PREFIX+"/slide";
     }
+
+    /**
+     * 移动端日期控件
+     * @return
+     */
+    @RequestMapping(value = "/mobiscroll" , method = RequestMethod.GET)
+    public String mobiscroll() {
+        return PREFIX+"/mobiscroll";
+    }
 }
