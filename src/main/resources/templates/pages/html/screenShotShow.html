@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="layout" content="main">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvs {
+            background-color: yellow;
+            width: 400px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 10px;
+        }
+        .title {
+            font-size: 18px;
+        }
+    </style>
+    <script type="text/javascript" src="/js/jquery/js/jquery-3.5.0.min.js"></script>
+    <script type="text/javascript" src="/js/html2canvas/js/html2canvas.js"></script>
+    <script type="text/javascript">
+        function downloadForJS() {
+            //使用html2canvas 转换html为canvas
+            html2canvas(document.getElementById('canvs')).then(function (canvas) {
+                var imgUri = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); // 获取生成的图片的url 　
+                $('#photoImg').attr('src',imgUri);
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="canvs">
+    <div class="title">如梦令·昨夜雨疏风骤</div>
+    <div>[宋] 李清照</div>
+    <div>昨夜雨疏风骤，浓睡不消残酒，试问卷帘人，却道海棠依旧。</div>
+    <div>知否，知否，应是绿肥红瘦。</div>
+</div>
+<div id='photo'>
+    　　<span>长按图片保存和分享</span>
+    　　<img id="photoImg" src="">
+</div>
+<div style="width: 400px;margin:50px auto;">
+    <input class="button" type="button" value="button" onclick="downloadForJS()">测试</input>
+</div>
+</body>
+</html>

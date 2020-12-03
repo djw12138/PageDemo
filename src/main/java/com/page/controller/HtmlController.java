@@ -171,6 +171,26 @@ public class HtmlController {
     }
 
     /**
+     * 屏幕截图
+     *
+     * @return
+     */
+    @RequestMapping(value = "/screenShot", method = RequestMethod.GET)
+    public String screenShot() {
+        return PREFIX + "/screenShot";
+    }
+
+    /**
+     * 屏幕截图展示
+     *
+     * @return
+     */
+    @RequestMapping(value = "/screenShotShow", method = RequestMethod.GET)
+    public String screenShotShow() {
+        return PREFIX + "/screenShotShow";
+    }
+
+    /**
      * @param page
      * @param limit
      * @Author dai jiawei
