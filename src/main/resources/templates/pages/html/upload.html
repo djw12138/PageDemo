@@ -7,7 +7,7 @@
 </head>
 <body>
 <style>
-    #image_add_icon{
+    .image_add_icon{
         width:90px;
         height:90px;
         background:#F5F5F5;
@@ -16,7 +16,7 @@
         margin-top:15px;
     }
 
-    #image_add_icon img {
+    .image_add_icon img {
         max-width:50%;
         max-height:50%;
         padding: 25% 25% 25% 25%;
@@ -58,7 +58,7 @@
         transform: translate(-50%,-50%);
     }
 </style>
-<div id="image_list">
+<div>
     <div class="image_show_container">
         <img src="/images/upload/image_delete.png" class="image_del" onclick="deleteImage(this)"/>
         <div class="image_show">
@@ -66,9 +66,17 @@
             <img src="/images/upload/image_delete.png">
         </div>
     </div>
-    <div id="image_add_icon">
+    <div id="image_add_icon" class="image_add_icon">
         <label><img src="/images/upload/image_add.png"/>
-            <input style="display:none" type="file" name="file" id="upimg" onchange="uploadImage(this)"/>
+            <input style="display:none" type="file" name="file" onchange="uploadImage(this)"/>
+        </label>
+    </div>
+</div>
+<div>
+    <div>文件上传并压缩</div>
+    <div class="image_add_icon">
+        <label><img src="/images/upload/image_add.png"/>
+            <input style="display:none" type="file" name="file" onchange="uploadCompressImage(this)"/>
         </label>
     </div>
 </div>
@@ -101,6 +109,33 @@
             success: function(result){
                 console.log(result);
                 cur_obj.parent().find('span').html('上传图片完成');
+                alert("success");
+            }
+        });
+    }
+
+    //上传并压缩文件
+    function uploadCompressImage(obj) {
+        console.log("开始--------");
+        console.log(obj);
+        console.log(obj.files);
+        var file_obj  = obj.files[0];
+        if(file_obj === undefined){
+            return;
+        }
+        var formData = new FormData();
+        formData.append("file", file_obj);//文件对象
+        $.ajax({
+            url: '/fileController/uploadCompress',
+            type: 'POST',
+            dataType: "json",
+            mimeType: "multipart/form-data",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result){
+                console.log(result);
                 alert("success");
             }
         });

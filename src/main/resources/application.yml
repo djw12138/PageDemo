@@ -8,3 +8,7 @@ spring:
     suffix: .html
     encoding: UTF-8
     cache: false
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
